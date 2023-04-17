@@ -1,0 +1,105 @@
+mat-toolbar {
+    background: darkcyan;
+    color: white;
+}
+mat-toolbar p{
+    margin-left: 600px;
+}
+
+mat-sidenav {
+    margin: 16px;
+    width: 200px;
+    border-right: none;
+    background:darkcyan;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+.content {
+    height: calc(100vh - 98px);
+    border-radius: 10px;
+    margin: 16px;
+    margin-left: 32px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    color: lightgray;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px);
+}
+
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+    mat-icon {
+        margin-right: 8px;
+    }
+
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+
+.example-card {
+  
+   margin-left: 200px;
+   margin-top: 100px;
+   width:50%;
+   height:100px;
+   background: darkcyan;
+  }
+  .example-card p{
+    font-size: 18px;
+    color: white;
+   
+ }
+  table {
+    width: 100%;
+ }
+td{
+    font-size: 18px;   
+}
+
+ .example-card11{
+        max-width: 50%;
+        height: 400px;
+        background: darkcyan;
+        margin-top: 50px;
+        margin-left: 250px;
+ }
+
+ .example-card11 p{
+    font-size: 18px;
+    color: white;
+    margin-top: 20px;
+ }
+ .mat-row:hover .mat-cell{
+    background-color: whitesmoke;
+}
+.toolbar{
+    width: 50%;
+    height: 50px;
+    margin-left: 250px;
+    background:darkcyan;
+    margin-top: 10px;
+}
+.toolbar h3{
+   margin-left: 200px;
+   
+}

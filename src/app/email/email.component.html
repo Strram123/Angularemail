@@ -1,0 +1,254 @@
+<mat-toolbar> 
+        
+    <p>Email</p>
+</mat-toolbar>
+    
+    <mat-sidenav-container>
+        <mat-sidenav  opened mode="side">
+                <button mat-button class="menu-button" (click)="onClickButton('inbox') ">
+                    <mat-icon>inbox</mat-icon>
+                    <span>Inbox</span>
+                </button>
+                <button mat-button class="menu-button" (click)="onClickButton('allmail')">
+                    <mat-icon>mail</mat-icon>
+                    <span>AllMail</span>
+                </button>
+                <button mat-button class="menu-button" (click)="onClickButton('spam')">
+                    <mat-icon>spam</mat-icon>
+                    <span>Spam</span>
+                </button>
+                <button mat-button class="menu-button" (click)="onClickButton('trash')">
+                    <mat-icon>restore_from_trash</mat-icon>
+                    <span>Trash</span>
+                </button>
+                <button mat-button class="menu-button" (click)="onClickButton('draft')">
+                    <mat-icon>drafts</mat-icon>
+                    <span>Draft</span>
+                </button>
+                <button mat-button class="menu-button" (click)="newEmail()">
+                  <mat-icon>add</mat-icon>
+                  <span>Compose Mail</span>
+              </button>
+                <mat-divider></mat-divider>    
+        </mat-sidenav>
+
+
+        <mat-sidenav-content >
+
+            <div *ngIf="activeButton === 'inbox' || activeButton === 'allmail'" >
+
+              <mat-toolbar  class="toolbar" *ngIf="activeButton === 'inbox'" >
+                 <h3>Inbox</h3> </mat-toolbar>
+              <mat-toolbar  class="toolbar" *ngIf="activeButton === 'allmail'">
+                 <h3>AllMail</h3> </mat-toolbar>
+           
+
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" *ngIf="!selectedRow">
+              <ng-container matColumnDef="position" class="position">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element" > {{element.position}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="content" class="position">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element" > {{element.content}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name" class="position">
+                <th mat-header-cell *matHeaderCellDef>  </th>
+                <td mat-cell *matCellDef="let element" > {{element.name}} </td>
+              </ng-container>
+         
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)">
+              </tr>
+            </table> 
+          </div>
+
+          <div>
+            <mat-card class="example-card" *ngIf="activeButton === 'spam' || activeButton === 'trash' || activeButton === 'draft'">
+              <mat-card-header>
+                <p *ngIf="activeButton === 'spam'">Spam</p>
+                <p *ngIf="activeButton === 'trash'">Trash</p>
+                <p *ngIf="activeButton === 'draft'">Draft</p>
+              </mat-card-header>
+              <mat-card-content>
+                <p> No Emails or Messages</p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <mat-card class="example-card11" *ngIf="selectedRow">
+              <mat-card-header>
+                <mat-icon (click)="backToInbox()">arrow_back</mat-icon>backToInbox
+              </mat-card-header>  
+
+          <mat-card-content>
+            <div> 
+             <p *ngIf="selectedRow.position === '1'">
+            <strong style="color: black;">Udemy</strong>
+             Inc. is an education technology company that provides an online learning and 
+              teaching platform. It was founded in May 2010 by Eren Bali, Gagan Biyani, and Oktay 
+              Caglar As of December 2022, the platform has 59 million learners, over 200,000 courses,
+             and more than 70,000 instructors teaching courses in nearly 75 languages. 
+             There have been over 800 million course enrollments.There are nearly 14,000 Udemy Business
+              customers, and more than 50% of the Fortune 100 are Udemy Business customers. 
+              Udemy Business customers have access to more than 20,000 courses, more than 8,000 of 
+              which are in English.Students take courses primarily to improve job-related skills.
+               Some courses generate credit toward technical certification. 
+               Udemy attracts corporate trainers seeking to create coursework for employees of their 
+               company.
+             </p> 
+              <p *ngIf="selectedRow.position === '2'">
+                <strong style="color: black;">CSS</strong>
+                 Industries, Inc., was founded in 1923, as City Stores Company. Its headquarters is at 
+                1845 Walnut Street, Philadelphia, Pennsylvania, with showrooms in New York City, Memphis, 
+                Tennessee, Minneapolis, Minnesota, and Hong Kong. The company designs, manufactures, and 
+                distributes seasonal and everyday greeting cards and novelties.
+                City Stores was a holding company, incorporated in the state of Delaware, that owned directly 
+                or indirectly all or a substantial majority of the stocks of several department and specialty
+                 stores in six states. It eventually controlled 39 stores in 19 states. The stores were 
+                 serviced by a New York resident buying corporation, City Stores Mercantile Company,
+                  Inc., a subsidiary wholly owned by City Stores. In the 1950s, City Stores merged with 
+                  Specialty Stores Co becoming City Specialty Stores.
+              </p>
+
+              <p *ngIf="selectedRow.position === '3'">
+                <strong style="color: black;">Naukuri</strong>
+                 is an Indian employment website operating in India and Middle East. 
+                It was founded in March 1997 by Indian businessman Sanjeev Bikhchandani. Naukri.com
+               is the largest employment website in India.
+               Naukri.com was launched on 27 March 1997. The company was started as a floorless employment 
+               exchange. It was a database of resume, jobs, and recruitment consultants. Conceived as a 
+               platform of job seekers and hiring managers to meet, the services went commercial in October 1997.
+               It all started when Sanjeev Bikhchandani quit his corporate job at Hindustan Milkfood
+                Manufacturers (now Glaxo Smithkline) and founded two companies with his partner - Info Edge 
+                (for arranging database) and Indmark (pharmaceutical) . Info Edge offered salary reports 
+                to various categories of college graduates such as engineering and MBAs. Salary reports were 
+                sold to companies, somewhere between 5000 and 10,000 INR. Sanjeev and his business partner at
+                 Info Edge operated from servants’ quarter located in Sanjeev's home
+              </p>
+              <p *ngIf="selectedRow.position === '4'">
+                <strong style="color: black;">Kotak</strong>
+                Kotak Mahindra Bank Limited is an Indian banking and financial services company headquartered in 
+                Mumbai. It offers banking products and financial services for corporate and retail customers in
+                 the areas of personal finance, investment banking, life insurance, and wealth management.
+                  It is India's third largest private sector bank by market capitalisation after HDFC Bank and
+                   ICICI Bank. As of February 2021, the bank has 1600 branches and 2519 ATMs.
+                   In 1985, Uday Kotak founded Kotak Capital Management Finance as an investment and financial 
+                   services company, with a loan of ₹30 lakh from family and friends. In 1986, Anand Mahindra 
+                   and his father Harish Mahindra invested ₹1 lakh in the company and it was subsequently renamed 
+                   as Kotak Mahindra Finance. The company was initially engaged in bill discounting, along with
+                    lease and hire purchase activities.
+                   In the early 1990s, the company started car financing and investment banking
+                    services, and expanded its operations overseas. In 1996, car financing company 
+                    Kotak Mahindra Primus was incorporated as a 60:40 joint venture between Kotak 
+                    Mahindra Finance and Ford Credit International.
+
+              </p> 
+              <p *ngIf="selectedRow.position === '5'">
+                <strong style="color: black;">Capgemini</strong>
+                Capgemini was founded by Serge Kampf in 1967 as an enterprise management and data
+                 processing company. The company was founded as the Société pour la Gestion de l'Entreprise
+                  et le Traitement de l'Information (Sogeti).
+                In 1974, Sogeti acquired Gemini Computers Systems, an American company based in New 
+                York.[6] In 1975, having made two major acquisitions of CAP (Centre d'Analyse et de
+                 Programmation) and Gemini Computer Systems, and following resolution of a dispute 
+                 with the similarly named CAP UK over the international use of the name 'CAP',
+                  Sogeti renamed itself as CAP Gemini Sogeti.
+              </p> 
+              <p *ngIf="selectedRow.position === '6'">
+                <strong style="color: black;">bayt.com</strong>
+                is a career site that serves the Middle East and North Africa. The website is 
+                owned and operated by Bayt.com, Inc., a privately held company headquartered in Dubai, 
+                United Arab EmiratesBayt.com, Inc. was founded in 2000 and launched its website that year.
+                 Its current CEO, Rabea Ataya, and current CTO, Akram Assaf are from the original founding team.
+              </p>
+              <p *ngIf="selectedRow.position === '7'">
+                <strong style="color: black;">Shine Recruiter</strong>
+                Shine Group was an international television production and distribution group with 26 
+                production companies across 12 countries creating scripted and non-scripted content in the 
+                global marketplace.
+                Shine Group companies included award-winning genre specialists such as U.K.-based 
+                Kudos (drama), Dragonfly (factual), Princess Productions 
+                (entertainment and multi-genre) and Shine TV (factual and factual entertainment);
+                 U.S. producer Shine America (formerly Reveille); and Metronome Film & Television, 
+                 the Nordic region’s largest production group. The group also includes Shine 360°,
+                  a group-wide ancillary and commercial rights division, Shine International, 
+                  the dedicated international sales and distribution arm and unscripted formats 
+                  division Shine Network.
+
+              </p> 
+              <p *ngIf="selectedRow.position === '8'">
+                <strong style="color: black;">Ecare India</strong>
+                The Estación Científica Antártica Ruperto Elichiribehety 
+                (English: Ruperto Elichiribehety Antarctic Scientific Station; better known in 
+                English by its Spanish acronym ECARE) is an Uruguay summer research station in
+                 Antarctica, established by the Uruguayan Antarctic Institute on December 22, 
+                 1997 on the Antarctic Peninsula.
+                ECARE is located in Hut Cove, southeast of Hope Bay in the northeastern part of
+                 the Antarctic Peninsula, next to the Argentinian Esperanza Base. The Station 
+                 can accommodate eight people, and it is dedicated to support scientific 
+                 projects in the surrounding area. It was formerly the British Station D, 
+                 known as Trinity House.
+              </p> 
+              <p *ngIf="selectedRow.position === '9'">
+                <strong style="color: black;">Zuno by Found</strong>
+                Monster.com is a global employment website owned and operated by Monster Worldwide, 
+                Inc. It was created in 1999 through the merger of The Monster Board (TMB) 
+                and Online Career Centre (OCC). It is a subsidiary of Randstad Holding, 
+                a Dutch multinational human resource consulting firm, and is headquartered in Weston, 
+                Massachusetts. It is known for its "When I Grow Up" commercial for Super Bowl XXXIII,
+                 which features kids telling about their future status of dead-end jobs
+              </p> 
+              <p *ngIf="selectedRow.position === '10'">
+                <strong style="color: black;">AmbitionBox</strong>
+                Info Edge (India) Limited is an Indian pure play technology company, based in Noida
+                . It was founded by Sanjeev Bikhchandani in 1995. The company owns and operates the 
+                flagship employment website Naukri.com, matrimonial website Jeevansathi.com, real 
+                estate classifieds platform 99Acres.com, and educational portal Shiksha.com, 
+                among other websites. As of 2018, more than 70 percent of the company's 
+                revenue comes from Naukri.com.
+                As of September 2020, it also holds minority stakes in 23 online companies including two former 
+                unicorns[12]—the food delivery company Zomato (15.23% stake, as of July 2021)
+                and the insurance aggregator Policybazaar (13.3% stake, as of November 2021)
+              </p> 
+              <p *ngIf="selectedRow.position === '11'">
+                <strong style="color: black;">Team Hackathon</strong>
+                A hackathon (also known as a hack day, hackfest, datathon or codefest; a portmanteau of hacking 
+                and marathon) is an event where people engage in rapid and collaborative engineering over a 
+                relatively short period of time such as 24 or 48 hours. They are often run using agile software
+                 development practices, such as sprint-like design wherein computer programmers and others 
+                 involved in software development, including graphic designers, interface designers, product
+                  managers, project managers, domain experts, and others collaborate intensively on engineering 
+                  projects, such as software engineering.
+
+              </p> 
+              <p *ngIf="selectedRow.position === '12'">
+                <strong style="color: black;">Found it</strong>
+                Monster.com is a global employment website owned and operated by Monster Worldwide, 
+                Inc. It was created in 1999 through the merger of The Monster Board (TMB) 
+                and Online Career Centre (OCC). It is a subsidiary of Randstad Holding, 
+                a Dutch multinational human resource consulting firm, and is headquartered in Weston, 
+                Massachusetts. It is known for its "When I Grow Up" commercial for Super Bowl XXXIII,
+                 which features kids telling about their future status of dead-end jobs
+              </p> 
+              <p *ngIf="selectedRow.position === '13'">
+                <strong style="color: black;">BookMyshow</strong>
+                is a movie and events ticket-booking Android application created in 2007. 
+                It is a subsidiary of Big Tree entertainment company. The apps sell tickets to plays,
+                 movies, amusement parks, sports matches, and live concerts in India, and reportedly 
+                 across Asia and Oceania. It also provides information about upcoming films, shows, 
+                 matches and venues.
+              </p> 
+             </div>
+            </mat-card-content>
+              </mat-card> 
+        </mat-sidenav-content>
+    </mat-sidenav-container> 
+   
+    
+
+
+

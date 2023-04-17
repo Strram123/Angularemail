@@ -1,0 +1,21 @@
+<mat-toolbar>
+<mat-icon (click)="backTomail()">arrow_back</mat-icon>  
+  <p>Compose Mail</p>
+
+</mat-toolbar>
+
+
+<div class="example">
+  To Address Emailid: <mat-form-field>
+ <input type="email"  matInput placeholder="" required 
+    pattern="[a-z0-9]{1,20}@[a-z0-9]{1,10}\.[a-z]{1,5}" [(ngModel)]="email"/>
+  </mat-form-field>
+</div>
+<div >
+  <mat-form-field appearance="outline" class='example1'>
+    <textarea matInput placeholder="Compose Ur Mail" [rows]='18'[(ngModel)]="textarea"></textarea>
+  </mat-form-field>
+  </div>
+  <div class="btn">
+    <button mat-raised-button  (click)="sending()">Send</button></div>
+

@@ -1,0 +1,37 @@
+<mat-toolbar> 
+<p>Register Page</p>
+</mat-toolbar>
+
+<div class="example-container">
+
+  <mat-form-field>
+    <input type="text" matInput placeholder="Enter your Name" required [(ngModel)]="name"
+     pattern="[a-zA-Z]{1,40}"/> 
+  
+  </mat-form-field>
+
+ 
+
+  <mat-form-field>
+    <input type="email" matInput placeholder="Enter your email" required [(ngModel)]="regEmail"
+    pattern="[a-z0-9]{1,20}@[a-z0-9]{1,10}\.[a-z]{1,5}"/> 
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+     [(ngModel)]="regpassword" required pattern="[1-9a-z]{8,20}">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Confrim your password" [type]="hide1 ? 'password' : 'text'" 
+    [(ngModel)]="confrimpassword" required pattern="[1-9a-z]{8,20}">
+    <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+ 
+</div>
+<button mat-raised-button  (click)="onsubmit()">Register</button>
+<br>
+<br>
+<a routerLink="" routerLinkActive="active">LoginPage</a>
